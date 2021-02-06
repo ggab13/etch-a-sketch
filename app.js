@@ -8,7 +8,8 @@ let rows = 0;
 let cols = 0;
 let opacity = 0.1;
 let isDrawing = false;
-
+let gridColor = 'black';
+content.style.backgroundColor = "rgb(255, 255, 215)"; 
 
 init();
 
@@ -20,15 +21,13 @@ function init(){
   mouseEvents();
 };
 
-
-
 randomButton.addEventListener("click", function(){   
-  let mouseOutElements = document.getElementsByClassName('grid-item-mouseout'); 
-  Array.prototype.forEach.call(mouseOutElements, function(element) {
-    element.classList.remove('grid-item-mouseout');
-    element.classList.add('grid-item-randomcolor');
- 
-  })});
+  gridColor = getRandomColor();
+});
+
+blackAndWhiteButton.addEventListener("click", function(){   
+  gridColor = 'black';
+});
 
 clearButton.addEventListener("click", function(){    
   let squaresPerSide = prompt("How many squares per side to make new grid?");
@@ -44,21 +43,9 @@ clearButton.addEventListener("click", function(){
     } 
 });
 
-function draw(element){   
-  if(isDrawing == true){
-  element.classList.remove('grid-item-clear');
-  element.classList.add('grid-item-mouseout');
-  element.style.opacity = opacity;
-}
-  if(opacity <= 1){
-    opacity += 0.1;
-  }else{
-    opacity = 0.1;
-  }
-};  
-
 function mouseEvents(){   
   Array.prototype.forEach.call(elements, function(element) {
+ 
    element.addEventListener('click',function (){
      isDrawing = true;
       draw(element);
@@ -67,16 +54,37 @@ function mouseEvents(){
       isDrawing = true;
       draw(element);
     }); 
-    element.addEventListener('mouseup',function (){
-      isDrawing = false;
-      draw(element);
-    }); 
-    element.addEventListener('mouseout',function (){
+    element.addEventListener('mouseleave',function (){
       draw(element);
     });
-
+    element.addEventListener('mouseup',function (){
+      isDrawing = false;     
+    });    
   });
-}
+};
+
+function draw(element){   
+    if(isDrawing == true){
+    element.classList.remove('grid-item-clear');
+    element.classList.add('grid-item-mouseout');
+    element.style.opacity = opacity;
+    element.style.backgroundColor = gridColor;
+  }
+    if(opacity <= 1){
+      opacity += 0.1;
+    }else{
+      opacity = 0.1;
+    } 
+};  
+
+function getRandomColor(){
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 
 function makeGrid(rows, cols){
     content.style.setProperty('--grid-rows', rows);
@@ -93,19 +101,20 @@ function makeClearButton (){
   clearButton.classList.add('clear-button');
   clearButton.appendChild(t);
   etchasketch.appendChild(clearButton);
-}
+};
 
 function makeRandomColorButton (){
   randomButton = document.createElement("button");
-  var t = document.createTextNode("Random Color");
+  var t = document.createTextNode("Random");
   randomButton.classList.add('random-button');
   randomButton.appendChild(t);
   etchasketch.appendChild(randomButton);
-}
+};
+
 function makeBlackAndWhiteButton (){
   blackAndWhiteButton = document.createElement("button");
-  var t = document.createTextNode("B&W");
+  var t = document.createTextNode("B & W");
   blackAndWhiteButton.classList.add('blackandwhite-button');
   blackAndWhiteButton.appendChild(t);
   etchasketch.appendChild(blackAndWhiteButton);
-}
+};

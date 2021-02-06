@@ -1,64 +1,229 @@
- :root {
-    --grid-cols: 0;
-    --grid-rows: 0;
-  }
+:root {
+  --grid-cols: 0;
+  --grid-rows: 0;
+  --background-color: black;
+}
 
-  #etchasketch {
-    position: relative;
-    max-width: 1160px;
-    max-height: 900px;
-    width: 1160px;
-    height: 900px;
-    margin: 200px auto;    
-    justify-content: center;      
-  }
+body {
+  background-color: rgba(192, 192, 74, 0.219);
+}
 
-  #content {
-    
-    position: absolute;    
-    width: 960px !important;
-    height: 800px !important;
-    margin: 75px 125px;    
-    display: grid;   
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-cols), 1fr);    
-  }
+#etchasketch {
+  background-color: red;
+  position: relative;
+  max-width: 1160px;
+  max-height: 840px;
+  width: 1020px;
+  height: 850px;
+  margin: 100px auto;    
+  justify-content: center;      
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;  
+}
 
-  .grid-item {     
-    padding: auto;
-    border: 1px solid #ddd;
-    text-align: center;        
-    background-color: white;      
-  }
-  .grid-item-mouseout{     
-      transition: 0.5s;      
-      background-color: black;   
-  }
-  .grid-item-clear{     
-    background-color: white;   
+.letters {
+  
+  font-size: 55px;
+  text-align: center;
+  font-weight: bold;
+  height: 50px;
+}
+
+.letters div {
+  display: inline-block;
+  margin: 30px auto;
+}
+
+.H {
+  color: deeppink;
+  animation: swag 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite 0.2s;
+}
+
+.text {
+  font-family: "Sacramento", cursive;
+  padding: 0 10px;
+  text-shadow: 0.08vw 0.08vw yellow;
+}
+.screen {
+  font-size: 35px;
+  padding: 0 10px;
+  text-shadow: 0.10vw 0.10vw yellow;
+}
+.magic {
+  display:inline-block;
+  font-size: 35px;
+  padding: 0 10px;
+  color: black;  
+  animation: glow 2s ease-in-out infinite alternate;
+}
+.r{
+  color: yellow;
+  text-shadow: 0.08vw 0.08vw black;
+  font-size: 50px;
+  display:inline-block;
+  animation: swag 5s cubic-bezier(0.3, 0.3, 0.3, 0.3) infinite 2s;
+}
+.name
+{
+  color: black;  
+}
+
+button {
+  font-family: "Sacramento", cursive;
+  font-size: 28px;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  border-radius: 80px;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;  
+}
+
+#content {
+  background-color: rgba(255, 255, 255, 0.472);   
+  position: absolute;    
+  width: 760px !important;
+  height: 605px !important;
+  margin: 75px 140px;    
+  display: grid;   
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);    
+  border-radius: 15px;
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  overflow: hidden;
+}
+
+.grid-item {     
+  padding: auto;
+  border: 1px solid #ddd;
+  text-align: center;        
+  background-color: rgba(255, 255, 255, 0.472);      
+}
+.grid-item-mouseout{     
+    transition: 0.5s;      
+    background-color: var(--background-color);   
+}
+.grid-item-clear{     
+  background-color: rgba(255, 255, 255, 0.472);  
 }
 
 .grid-item-randomcolor{
   background-color: red;
 }
-  .clear-button {   
-    text-align: center;
-    position: absolute;        
-    width: 120px;
-    height: 60px;
-    margin-top:300px;   
+.clear-button {   
+  text-align: center;
+  position: absolute;        
+  width: 125px;
+  height: 55px;
+  margin-left:450px;   
+  margin-top: 700px;
+}
+.random-button {   
+  text-align: center;
+  position: absolute;        
+  width: 125px;
+  height: 55px;
+  margin-top: 700px;
+  margin-left:250px;   
+}
+.blackandwhite-button {  
+  text-align: center;   
+  position: absolute;        
+  width: 125px;
+  height: 55px;
+  margin-top: 700px;
+  margin-left:650px;   
+}
+.random-button:hover{
+  animation: noves 2s 1;
+}
+.random-button:active{
+  color: red; 
+  animation: noves 2s 1;
+}
+.blackandwhite-button:active{
+  color: red; 
+  animation: noves 2s 1;
+}
+.clear-button:active{
+  color: red; 
+  animation: noves 2s 1;
+}
+
+.clear-button:hover{
+ 
+  animation: noves 2s 1;
+}
+
+.blackandwhite-button:hover{
+ 
+  animation: noves 2s 1;
+}
+
+@keyframes noves {
+  0% {            
+    width: 125px;
+  height: 55px;
   }
-  .random-button {   
-    text-align: center;
-    position: absolute;        
-    width: 120px;
-    height: 60px;
-    margin-top:370px;   
+  50% {
+    width: 135px;
+  height: 65px;
   }
-  .blackandwhite-button {  
-    text-align: center; 
-    position: absolute;        
-    width: 120px;
-    height: 60px;
-    margin-top:440px;   
+  100% {
+    width: 125px;
+  height: 55px;
   }
+  }
+@keyframes glow {
+  from {
+ color: white;
+ 
+  text-shadow:  0 0 10px rgb(228, 231, 45), 0 0 20px rgb(221, 213, 179), 0 0 30px #e6cf00, 0 0    40px #c9bd1c, 0 0 50px #f3dc0a, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+  color: black;
+  text-shadow:   0.07vw 0.07vw yellow;
+  }
+  }
+
+
+@-webkit-keyframes swag {
+  form {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes swag {
+  form {
+      -moz-transform: rotate(0deg);
+  }
+  to {
+      -moz-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes swag {
+  form {
+      -o-transform: rotate(0deg);
+  }
+  to {
+      -o-transform: rotate(360deg);
+  }
+}
+@keyframes swag {
+  form {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
